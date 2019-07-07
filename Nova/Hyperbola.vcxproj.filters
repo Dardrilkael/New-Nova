@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Events">
+      <UniqueIdentifier>{3A8963B1-262B-8E87-0FE6-A1DBFB2615D8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="HyperBola">
+      <UniqueIdentifier>{2B8E8201-97F8-3678-E036-E81D4CE014CD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGl">
+      <UniqueIdentifier>{3E7D2C1D-AA08-9AE1-B319-1DD61F24F6E1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Renderer">
+      <UniqueIdentifier>{7CCE658F-689B-C09A-91B4-AE427DE0F528}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Events\ApplicationEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Events\Event.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Events\KeyEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Events\MouseEvent.h">
+      <Filter>Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola\Application.h">
+      <Filter>HyperBola</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola\Core.h">
+      <Filter>HyperBola</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola\EntryPoint.h">
+      <Filter>HyperBola</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola\Input.h">
+      <Filter>HyperBola</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola\KeyCodes.h">
+      <Filter>HyperBola</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola\Log.h">
+      <Filter>HyperBola</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola\MouseCodes.h">
+      <Filter>HyperBola</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola\Window.h">
+      <Filter>HyperBola</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola\hbpch.h">
+      <Filter>HyperBola</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h">
+      <Filter>Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLShader.h">
+      <Filter>Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLVertexArray.h">
+      <Filter>Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenglBuffer.h">
+      <Filter>Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Buffer.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\GraphicsContext.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\Shader.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Renderer\VertexArray.h">
+      <Filter>Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HyperBola.h" />
+    <ClInclude Include="src\Physics\Physics.h" />
+    <ClInclude Include="src\Renderer\Render.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\HyperBola\Application.cpp">
+      <Filter>HyperBola</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HyperBola\Log.cpp">
+      <Filter>HyperBola</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HyperBola\hbpch.cpp">
+      <Filter>HyperBola</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLContext.cpp">
+      <Filter>Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLShader.cpp">
+      <Filter>Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLVertexArray.cpp">
+      <Filter>Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenglBuffer.cpp">
+      <Filter>Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Buffer.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\VertexArray.cpp">
+      <Filter>Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Renderer\Renderer.cpp" />
+  </ItemGroup>
+</Project>
