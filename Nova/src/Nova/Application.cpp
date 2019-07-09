@@ -36,9 +36,9 @@ namespace Nova
 	
 		m_Object = new Mesh(
 			{
-				{glm::vec3(-0.5f, -0.5f, 0.0f),	glm::vec4(0.8f, 0.0f, 0.0f, 1.0f)},
-				{glm::vec3(0.0f,  0.5f, 0.0f),	glm::vec4(0.0f, 0.8f, 0.0f, 1.0f)},
-				{glm::vec3(0.5f, -0.5f,0.0f),	glm::vec4(0.0f, 0.0f, 0.8f, 1.0f)}
+				{glm::vec3(-0.5f, -0.433f, 0.0f),	glm::vec4(0.8f, 0.0f, 0.0f, 1.0f)},
+				{glm::vec3(0.0f,  0.433f, 0.0f),	glm::vec4(0.0f, 0.8f, 0.0f, 1.0f)},
+				{glm::vec3(0.5f, -0.433f,0.0f),	glm::vec4(0.0f, 0.0f, 0.8f, 1.0f)}
 			},
 			{ 0,1,2 },
 			{
@@ -50,7 +50,7 @@ namespace Nova
 			Material()
 			);
 		m_Object->Move(glm::vec3(0.0f, 0.0f, -0.5f));
-
+		NOVA_CORE_LOG_CRITICAL("{0}", glGetString(GL_VERSION));
 
 		glfwSetKeyCallback((GLFWwindow*)m_Window->GetNativeWindow(), [](GLFWwindow * window, int key, int scancode, int action, int mods)
 		{

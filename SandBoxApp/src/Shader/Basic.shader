@@ -1,5 +1,5 @@
 #Vertex
-#version 330 core
+//#version 430 core
 layout (location = 0) in vec4 aPos;
 layout (location = 1) in vec4 aColor;
 
@@ -14,7 +14,7 @@ void main()
 
 
 #Fragment
-#version 330 core
+//#version 430 core
 uniform vec4 color;
 out vec4 FragColor;
 in vec4 vcolor;

@@ -9,7 +9,7 @@ namespace Nova
 		std::string Title;
 		uint32_t Width, Height;
 
-		WindowProps(std::string Title = "Nova Window", uint32_t width = 1024, uint32_t height = 720):
+		WindowProps(std::string Title = "Nova Window", uint32_t width = 1280, uint32_t height = 720):
 		Title(Title),Width(width), Height(height)
 		{}
 	};
