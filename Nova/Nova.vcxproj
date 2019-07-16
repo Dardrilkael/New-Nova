@@ -149,6 +149,7 @@
     <ClInclude Include="src\Nova\Events\KeyEvent.h" />
     <ClInclude Include="src\Nova\Events\MouseEvent.h" />
     <ClInclude Include="src\Nova\Events\WindowEvent.h" />
+    <ClInclude Include="src\Nova\Input.h" />
     <ClInclude Include="src\Nova\Log.h" />
     <ClInclude Include="src\Nova\Objects.h" />
     <ClInclude Include="src\Nova\Objects\Objects.h" />
@@ -164,6 +165,8 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
+    <ClInclude Include="src\Platform\OpenGL\TextRenderer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\novapch.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
@@ -531,6 +534,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Nova\Application.cpp" />
+    <ClCompile Include="src\Nova\CompileSTBI.cpp" />
     <ClCompile Include="src\Nova\Log.cpp" />
     <ClCompile Include="src\Nova\Objects\Objects.cpp" />
     <ClCompile Include="src\Nova\Renderer\Buffer.cpp" />
@@ -541,6 +545,8 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\TextRenderer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\novapch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

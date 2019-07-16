@@ -7,7 +7,7 @@ namespace Nova
 	{
 	public:
 		// Herdado por meio de VertexBuffer
-		OpenGLVertexBuffer(float * vertices, uint32_t size);
+		OpenGLVertexBuffer(float * vertices, uint32_t size, MemoryPlace place);
 		virtual ~OpenGLVertexBuffer();
 		virtual void Bind() const override;
 		virtual void UnBind() const override;

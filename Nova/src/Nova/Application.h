@@ -10,10 +10,11 @@
 
 #include "Objects/Objects.h"
 #include "Renderer/Camera.h"
+#include "Platform/OpenGL/TextRenderer.h"
 
 namespace Nova
 {
-
+	
 
 class NOVA_API Application
 {
@@ -34,6 +35,7 @@ private:
 	Mesh* m_Object;
 	Renderer* m_Renderer;
 	Camera m_Camera;
+	Text* m_Text;
 };
 
 

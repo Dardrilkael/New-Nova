@@ -6,7 +6,9 @@ namespace Nova
 	 std::shared_ptr<spdlog::logger> Log::s_CoreLogger;
 	 std::shared_ptr<spdlog::logger> Log::s_ClientLogger;
 
-	void Log::Init()
+	 void Log::SetCoreLevel(level_log level) { s_CoreLogger->set_level(Convert(level)); }
+
+	 void Log::Init()
 	{
 		spdlog::set_pattern("%^[%T] %n: %v%$");
 

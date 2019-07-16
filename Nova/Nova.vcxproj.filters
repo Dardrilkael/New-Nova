@@ -1209,6 +1209,9 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
+    <ClInclude Include="src\Platform\OpenGL\TextRenderer.h" />
+    <ClInclude Include="src\Nova\Input.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Nova\Application.cpp">
@@ -1250,5 +1253,8 @@
     <ClCompile Include="src\novapch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\TextRenderer.cpp" />
+    <ClCompile Include="src\Nova\CompileSTBI.cpp" />
   </ItemGroup>
 </Project>

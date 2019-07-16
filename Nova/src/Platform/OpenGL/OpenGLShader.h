@@ -12,6 +12,7 @@ namespace Nova
 
 		int GetUniformLocation(const char* name)const;
 
+		virtual void SetInt(const char* name, int value) const override;
 
 		virtual void SetVec3(const char* name, float a, float b, float c) const override;
 		virtual void SetVec3(const char* name, float* value) const override;

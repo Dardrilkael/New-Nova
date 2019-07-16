@@ -3,6 +3,11 @@
 
 namespace Nova
 {
+	enum class MemoryPlace
+	{
+		Dynamic,
+		Static
+	};
 
 	enum class BufferType
 	{
@@ -40,7 +45,7 @@ namespace Nova
 		virtual ~VertexBuffer(){}
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
-		static VertexBuffer* Create(float* vertices, uint32_t size);
+		static VertexBuffer* Create(float* vertices, uint32_t size, MemoryPlace place = MemoryPlace::Static);
 		virtual void addLayout(const VertexBufferLayout& layout) = 0;
 	};
 

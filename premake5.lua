@@ -10,7 +10,7 @@ include "Nova/vendor/glfw"
 
 project "Nova"
 location "Nova"
-kind "SharedLib"
+kind "StaticLib"
 language "C++"
 cppdialect "C++17"
 staticruntime "on"
@@ -42,7 +42,9 @@ links
 	"Glad",
 	"opengl32.lib",
 
+
 	}
+
 
 includedirs 
 	{
@@ -53,6 +55,7 @@ includedirs
 		"%{prj.name}/vendor/glfw/include",
 		"%{prj.name}/vendor/glm",
 		"%{prj.name}/vendor/stbi",
+
 	}
 
 

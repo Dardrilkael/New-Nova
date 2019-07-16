@@ -5,6 +5,7 @@ namespace Nova
 	class Shader
 	{
 	public:
+		virtual void SetInt(const char* name, int value) const = 0;
 
 		virtual void SetVec3(const char* name, float a, float b, float c) const = 0;
 		virtual void SetVec3(const char* name, float* value) const = 0;

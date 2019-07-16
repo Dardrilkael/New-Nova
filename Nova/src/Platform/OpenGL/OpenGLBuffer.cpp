@@ -32,7 +32,7 @@ namespace Nova
 
 
 //--------------------\Vertex Buffer/--------------------//
-OpenGLVertexBuffer::OpenGLVertexBuffer(float * vertices, uint32_t size)
+OpenGLVertexBuffer::OpenGLVertexBuffer(float * vertices, uint32_t size, MemoryPlace place)
 {
 	glGenBuffers(1, &m_RendererID);
 	glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
@@ -56,22 +56,22 @@ void OpenGLVertexBuffer::UnBind()const
 
 void OpenGLVertexBuffer::addLayout(const VertexBufferLayout& layout)
 {
-	NOVA_CORE_LOG_FATAL("Working  {0}", layout.begin()->name);
+	NOVA_CORE_LOG_TRACE("Working  {0}", layout.begin()->name);
 	int count = 0;
 	int stride = 0;
 	int offset = 0;
 
 	for (auto& item : layout) {
 		stride += GetSizeOfData(item.type);
-		NOVA_CORE_LOG_INFO("Tipo size :{0}", GetSizeOfData(item.type));
-		NOVA_CORE_LOG_INFO("Stride :{0}", stride);
+		NOVA_CORE_LOG_TRACE("Tipo size :{0}", GetSizeOfData(item.type));
+		NOVA_CORE_LOG_TRACE("Stride :{0}", stride);
 	}
 	for (auto& item : layout)
 	{
-		NOVA_CORE_LOG_CRITICAL("Count: {0}", count);
-		NOVA_CORE_LOG_CRITICAL("Quantity: {0}", GetCountOfData(item.type));
-		NOVA_CORE_LOG_CRITICAL("Stride: {0}", stride);
-		NOVA_CORE_LOG_CRITICAL("Ofsset: : {0}", offset);
+		NOVA_CORE_LOG_TRACE("Count: {0}", count);
+		NOVA_CORE_LOG_TRACE("Quantity: {0}", GetCountOfData(item.type));
+		NOVA_CORE_LOG_TRACE("Stride: {0}", stride);
+		NOVA_CORE_LOG_TRACE("Ofsset: : {0}", offset);
 		glVertexAttribPointer(count, GetCountOfData(item.type), GetGLType(item.type), item.normalized, stride, (void*)offset);
 		glEnableVertexAttribArray(count);
 

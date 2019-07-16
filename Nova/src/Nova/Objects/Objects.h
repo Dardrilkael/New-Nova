@@ -26,6 +26,7 @@ public:
 	{
 		glm::vec3 vertex;
 		glm::vec4 color;
+		glm::vec2 texCoords;
 
 	};
 

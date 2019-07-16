@@ -117,7 +117,9 @@ namespace Nova
 
 	int OpenGLShader::GetUniformLocation(const char* name)const { return glGetUniformLocation(m_RendererID, name); }
 	
-	
+	void OpenGLShader::SetInt(const char* name, int value)const { glUniform1d(GetUniformLocation(name),value); }
+
+
 	void OpenGLShader::SetVec3(const char* name, float a, float b, float c)const { glUniform3f(GetUniformLocation(name), a, b, c); }
 	void OpenGLShader::SetVec3(const char* name, float* value)const { glUniform3fv(GetUniformLocation(name), 1, value); }
 	

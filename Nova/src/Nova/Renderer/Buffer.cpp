@@ -6,12 +6,12 @@
 
 namespace Nova
 {
-	VertexBuffer * VertexBuffer::Create(float * vertices, uint32_t size)
+	VertexBuffer * VertexBuffer::Create(float * vertices, uint32_t size, MemoryPlace place)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None: return nullptr; break;
-		case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size); break;
+		case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size, place); break;
 		default:
 			return nullptr;
 			break;

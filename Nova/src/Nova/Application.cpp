@@ -18,10 +18,16 @@
 #include "Events/KeyEvent.h"
 #include <thread>
 #include <chrono>
+
+#include "Platform/OpenGL/OpenGLTexture.h"
+
+#include "Platform/OpenGL/TextRenderer.h"
+
 bool should[10];
-#define speed 0.001f
+#define speed 1.0f
 namespace Nova
 {
+	
 	
 	Application* Application::s_Instance = nullptr;
 	Application::Application():
@@ -34,17 +40,25 @@ namespace Nova
 		m_Window->SetVsync(true);
 		m_Shader = Shader::Create("D:/users/GABRIEL/Programming/c++/Nova/SandBoxApp/src/Shader/Basic.shader");
 	
+		m_Text = new Text("D:/users/GABRIEL/Programming/c++/Nova/SandBoxApp/src/Shader/cheider.shader");
+		m_Text->AddFont("Arial","D:/users/GABRIEL/Programming/c++/Nova/SandBoxApp/src/font/alphabet.png");
+		Texture* t1= Texture::Create(TextureType::NOVA_TEXTURE_2D,"D:/users/GABRIEL/Programming/c++/Nova/SandBoxApp/src/texture/abc.png");
+		t1->Bind(0);
+		m_Shader->SetInt("texture1", 0);
 		m_Object = new Mesh(
 			{
-				{glm::vec3(-0.5f, -0.433f, 0.0f),	glm::vec4(0.8f, 0.0f, 0.0f, 1.0f)},
-				{glm::vec3(0.0f,  0.433f, 0.0f),	glm::vec4(0.0f, 0.8f, 0.0f, 1.0f)},
-				{glm::vec3(0.5f, -0.433f,0.0f),	glm::vec4(0.0f, 0.0f, 0.8f, 1.0f)}
+				{glm::vec3(-0.5f, -0.5f, 0.0f),	glm::vec4(0.8f, 0.0f, 0.0f, 1.0f), glm::vec2(0.0f,0.0f)},
+				{glm::vec3(-0.5f,  0.5f, 0.0f),	glm::vec4(0.0f, 0.8f, 0.0f, 1.0f), glm::vec2(0.0f,1.0f)},
+				{glm::vec3( 0.5f, -0.5f, 0.0f), glm::vec4(0.0f, 0.0f, 0.8f, 1.0f), glm::vec2(1.0f,0.0f)},
+				{glm::vec3( 0.5f,  0.5f, 0.0f), glm::vec4(0.0f, 0.0f, 0.8f, 1.0f), glm::vec2(1.0f,1.0f)}
 			},
-			{ 0,1,2 },
-			{
+			{ 0,1,2,		
+			  1,2,3
+			},
+{
 			{ "aPos",BufferType::Float3 },
 			{ "color",BufferType::Float4 },
-			
+			{ "textcoords",BufferType::Float2 },
 			}
 			,*m_Shader,
 			Material()
@@ -112,9 +126,10 @@ namespace Nova
 			time = glfwGetTime();
 			m_Shader->SetVec4("color", sin(time), sin(time + 2.095), sin(time + 4.19),1.0f);
 
-
+			
 			m_Renderer->BeginScene(&m_Camera);
-			m_Renderer->Submit(*m_Object);
+			//m_Renderer->Submit(*m_Object);
+			m_Text->RenderText("ACGDF\n", "Arial", 50.0f, { 0.0f,0.0f });
 			m_Renderer->EndScene();
 			
 			m_Window->Update();
