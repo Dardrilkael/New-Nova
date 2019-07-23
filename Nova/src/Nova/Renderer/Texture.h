@@ -1,5 +1,5 @@
 #pragma once
-#include "Core.h"
+#include "Nova/Core.h"
 #include <string>
 
 enum class TextureType

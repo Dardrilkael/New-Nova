@@ -6,7 +6,7 @@
 
 namespace Nova
 {
-	extern enum class BufferType;
+	enum class BufferType;
 	struct Material_item
 	{
 		const char* name;

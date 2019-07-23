@@ -1,5 +1,5 @@
 #pragma once
-#include "Log.h"
+#include "Nova/Log.h"
 
 namespace Nova
 {

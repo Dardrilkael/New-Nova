@@ -4,9 +4,12 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/matrix_access.hpp>
-#include "Application.h"
-using namespace std::literals::chrono_literals;
+#include "Nova/Application.h"
+#include <thread>
+#include <chrono>
 
+using namespace std::literals::chrono_literals;
+#define m *0.8f
 namespace Nova
 
 {
@@ -22,8 +25,8 @@ namespace Nova
 		m_IBO.reset(IndexBuffer::Create(indices, sizeof(indices)));
 		m_Layout = new VertexBufferLayout(
 			{
-			{ "aPos",BufferType::Float2 },
-			{ "aTexCoords",BufferType::Float2 },
+			{ "aPos"      , BufferType::Float2 },
+			{ "aTexCoords", BufferType::Float2 },
 			}
 		);
 		m_Proj = glm::ortho(0.0f, (float)Application::Get()->GetWindow().GetWidth(),
@@ -60,24 +63,66 @@ namespace Nova
 		Log::SetCoreLevel(Log::level_log::info);
 		float xpos = pos.x;
 		float ypos = pos.y;
+		float vertices[24];
+	
+		
+
 		for (int i = 0; i < text.length(); i++)
 		{
-			
+		start:
+			int f = 1, g = 0;
 			//NOVA_CORE_LOG_SPECIAL("    : {0}  {1}", (int)c - 64,c);
 			//std::this_thread::sleep_for(1s);
-			
+
 			c = text[i];
-			b = c-1;
-			NOVA_CORE_LOG_WARN("    : {0}  {1}", (int)c - 64, c);
-			
+
+			switch (c)
+			{
+			case '\n':
+				i += 1;
+				ypos += size;
+				xpos = pos.x;
+				goto start;
+			case ' ':
+				xpos += size;
+				i += 1;
+				goto start;
+			case '\t':
+				xpos += 5*size m;
+				i += 1;
+				goto start;
+			default:
+				break;
+			}
+		
 
 			
 			
+			//std::this_thread::sleep_for(std::chrono::milliseconds(10));
+			//NOVA_CORE_LOG_WARN("    : {0}  {1}", (int)c - 64, c);
+			if (c > (7 + 64))
+			{
+				g = ((int)c - 64) / 7;
+				f = ((int)c - 64) % 7;
+				if (!f)
+				{
+					f = 7;
+					g -= 1;
+				}
+				c =f+64;
+				
+	
+				
+				if (text[i] >= 'V')c += 1;
+			}
+			
+			
+			b = c - 1;
 			float vertices[24] = {
-				xpos,     ypos,       ((int)b - 64)/7.0f, 0.0f,
-				xpos,     ypos + h,   ((int)b - 64)/7.0f, 1.0f/4 + 0.03f,
-				xpos + w, ypos,       ((int)c - 64)/7.0f, 0.0f,
-				xpos + w, ypos + h,   ((int)c - 64)/7.0f, 1.0f/4+0.03f
+				xpos,     ypos,       ((int)b - 64)/7.0f, (g-0)/4.0f ,
+				xpos,     ypos + h,   ((int)b - 64)/7.0f, (g+1)/4.0f ,
+				xpos + w, ypos,       ((int)c - 64)/7.0f, (g-0)/4.0f + 0.02f,
+				xpos + w, ypos + h,   ((int)c - 64)/7.0f, (g+1)/4.0f
 			};
 			
 			m_VAO->Bind();
@@ -89,7 +134,7 @@ namespace Nova
 			
 			glDrawElements(GL_TRIANGLES, m_VAO->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, NULL);
 			
-			xpos += size;
+			xpos += size m;
 		}
 		
 	}

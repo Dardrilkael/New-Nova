@@ -1,6 +1,6 @@
 #pragma once
 #include "RenderCommand.h"
-#include "Objects/Objects.h"
+#include "Nova/Objects/Objects.h"
 
 
 namespace Nova

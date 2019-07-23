@@ -1,11 +1,11 @@
 #pragma once
 #include "novapch.h"
 #include "Platform/OpenGL/OpenGLTexture.h"
-#include "Renderer/Buffer.h"
+#include "Nova/Renderer/Buffer.h"
 #include "glm/glm.hpp"
 #include "novapch.h"
 
-#include "Renderer/Shader.h"
+#include "Nova/Renderer/Shader.h"
 
 namespace Nova
 {

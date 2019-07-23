@@ -21,6 +21,7 @@ namespace Nova
 		virtual inline uint32_t GetWidth() const = 0;
 		virtual inline uint32_t GetHeight() const = 0;
 		virtual inline void* GetNativeWindow() const = 0;
+		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void SetAspectRatio(uint32_t x, uint32_t y) = 0;
 		virtual void SetTitle(const char* title) = 0;
 		virtual inline bool IsVsync() const = 0;

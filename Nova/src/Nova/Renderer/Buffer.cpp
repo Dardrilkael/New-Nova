@@ -1,6 +1,6 @@
 #include "novapch.h"
 #include "Buffer.h"
-#include "Renderer/Renderer.h"
+#include "Nova/Renderer/Renderer.h"
 #include "Nova/Core.h"
 #include "Platform/OpenGL/OpenGLBuffer.h"
 

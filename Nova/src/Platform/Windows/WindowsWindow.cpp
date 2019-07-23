@@ -1,12 +1,12 @@
 #include "novapch.h"
 #include "WindowsWindow.h"
-#include "Core.h"
+#include "Nova/Core.h"
 #include "Platform/OpenGL/OpenGLContext.h"
-#include "Log.h"
+#include "Nova/Log.h"
 
-#include "Events/KeyEvent.h"
-#include "Events/MouseEvent.h"
-#include "Events/WindowEvent.h"
+#include "Nova/Events/KeyEvent.h"
+#include "Nova/Events/MouseEvent.h"
+#include "Nova/Events/WindowEvent.h"
 
 namespace Nova
 {

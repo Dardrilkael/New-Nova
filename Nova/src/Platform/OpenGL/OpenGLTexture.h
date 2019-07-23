@@ -1,7 +1,7 @@
 #pragma once
-#include "Core.h"
+#include "Nova/Core.h"
 
-#include "Renderer/Texture.h"
+#include "Nova/Renderer/Texture.h"
 
 namespace Nova
 { 

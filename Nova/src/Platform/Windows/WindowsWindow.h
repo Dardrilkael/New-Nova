@@ -1,6 +1,6 @@
-#include "Window.h"
+#include "Nova/Window.h"
 #include "GLFW/glfw3.h"
-#include "Renderer/GraphicsContext.h"
+#include "Nova/Renderer/GraphicsContext.h"
 namespace Nova
 {
 
@@ -16,6 +16,7 @@ namespace Nova
 	};
 		
 		// Herdado por meio de Window
+		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
 		virtual inline uint32_t GetWidth() const override { return m_Data.Width; }
 		virtual inline uint32_t GetHeight() const override { return m_Data.Height; }
 		virtual inline void * GetNativeWindow() const override {return m_Window;}

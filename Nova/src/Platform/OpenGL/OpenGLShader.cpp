@@ -5,7 +5,7 @@
 #include <sstream>
 #include <string>
 #include <fstream>
-#include "Log.h"
+#include "Nova/Log.h"
 
 namespace Nova
 {

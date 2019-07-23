@@ -1,5 +1,5 @@
 #include "novapch.h"
-#include "Objects/Objects.h"
+#include "Nova/Objects/Objects.h"
 #include <glad/glad.h>
 #include "Objects.h"
 

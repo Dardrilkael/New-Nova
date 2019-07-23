@@ -63,6 +63,9 @@
     <ClInclude Include="src\Nova\Events\Event.h">
       <Filter>src\Nova\Events</Filter>
     </ClInclude>
+    <ClInclude Include="src\Nova\Events\EventCode.h">
+      <Filter>src\Nova\Events</Filter>
+    </ClInclude>
     <ClInclude Include="src\Nova\Events\KeyEvent.h">
       <Filter>src\Nova\Events</Filter>
     </ClInclude>
@@ -71,6 +74,15 @@
     </ClInclude>
     <ClInclude Include="src\Nova\Events\WindowEvent.h">
       <Filter>src\Nova\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Nova\Input.h">
+      <Filter>src\Nova</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Nova\Layer.h">
+      <Filter>src\Nova</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Nova\LayerStack.h">
+      <Filter>src\Nova</Filter>
     </ClInclude>
     <ClInclude Include="src\Nova\Log.h">
       <Filter>src\Nova</Filter>
@@ -102,6 +114,9 @@
     <ClInclude Include="src\Nova\Renderer\Shader.h">
       <Filter>src\Nova\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Nova\Renderer\Texture.h">
+      <Filter>src\Nova\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\Nova\Window.h">
       <Filter>src\Nova</Filter>
     </ClInclude>
@@ -116,6 +131,15 @@
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
       <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\TextRenderer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
@@ -1209,12 +1233,16 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
-    <ClInclude Include="src\Platform\OpenGL\TextRenderer.h" />
-    <ClInclude Include="src\Nova\Input.h" />
+    <ClInclude Include="src\Nova\Clock.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Nova\Application.cpp">
+      <Filter>src\Nova</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nova\CompileSTBI.cpp">
+      <Filter>src\Nova</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nova\LayerStack.cpp">
       <Filter>src\Nova</Filter>
     </ClCompile>
     <ClCompile Include="src\Nova\Log.cpp">
@@ -1247,14 +1275,20 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\TextRenderer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\novapch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\TextRenderer.cpp" />
-    <ClCompile Include="src\Nova\CompileSTBI.cpp" />
   </ItemGroup>
 </Project>

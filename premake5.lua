@@ -1,7 +1,8 @@
 workspace "Nova"
-architecture "x64"
-startproject "SandboxApp"
-configurations {"Debug","Release","Dist"}
+	architecture "x64"
+	startproject "SandboxApp"
+
+	configurations {"Debug","Release","Dist"}
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
@@ -9,19 +10,19 @@ include "Nova/vendor/glad"
 include "Nova/vendor/glfw"
 
 project "Nova"
-location "Nova"
-kind "StaticLib"
-language "C++"
-cppdialect "C++17"
-staticruntime "on"
+	location "Nova"
+	kind "StaticLib"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
-targetdir ("bin/" ..outputdir.. "/%{prj.name}")
-objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
+	targetdir ("bin/" ..outputdir.. "/%{prj.name}")
+	objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
 
 
 
-pchheader "novapch.h"
-pchsource "Nova/src/novapch.cpp"
+	pchheader "novapch.h"
+	pchsource "Nova/src/novapch.cpp"
 
 files 
 	{
@@ -49,7 +50,6 @@ links
 includedirs 
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/src/Nova",
 		"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/glad/include",
 		"%{prj.name}/vendor/glfw/include",
@@ -61,7 +61,7 @@ includedirs
 
 	postbuildcommands
 	{
-		("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/SandboxApp/\"")
+	--	("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/SandboxApp/\"")
 	}
 
 filter "system:windows"
@@ -75,34 +75,34 @@ filter "system:windows"
 
 filter "configurations:Debug"
 	defines "NOVA_DEBUG"
-	symbols "off"
+	symbols "on"
 	runtime "Debug"
 filter "configurations:Release"
 	defines "NOVA_RELEASE"
-	symbols "on"
+	optimize "on"
 	runtime "Release"
 filter "configurations:Dist"
 	defines "NOVA_DIST"
 	runtime "Release"
-	symbols "on"
+	optimize "on"
 
 
 
 
 
 project "SandBoxApp"
-location "SandBoxApp"
-kind "ConsoleApp"
-language "C++"
-cppdialect "C++17"
-staticruntime "on"
+	location "SandBoxApp"
+	kind "ConsoleApp"
+	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
-targetdir ("bin/" ..outputdir.. "/%{prj.name}")
-objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
+	targetdir ("bin/" ..outputdir.. "/%{prj.name}")
+	objdir ("bin-int/" ..outputdir.. "/%{prj.name}")
 
-links {"Nova"}
+	links {"Nova"}
 
-files 
+	files 
 	{
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/src/**.h",
@@ -112,6 +112,7 @@ files
 	{
 	"Nova/src",
 	"Nova/vendor/spdlog/include",
+	"Nova/vendor",
 	"Nova/vendor/glm",
 	}
 
@@ -121,14 +122,14 @@ filter "system:windows"
 
 filter "configurations:Debug"
 	defines "NOVA_DEBUG"
-	symbols "off"
+	symbols "on"
 	runtime "Debug"
 filter "configurations:Release"
 	defines "NOVA_RELEASE"
-	symbols "on"
+	optimize "on"
 	runtime "Release"
 filter "configurations:Dist"
 	defines "NOVA_DIST"
 	runtime "Release"
-	symbols "on"
+	optimize "on"
 

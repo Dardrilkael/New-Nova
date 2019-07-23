@@ -15,7 +15,8 @@
 #include "Platform/OpenGL/OpenGLBuffer.h"
 #include "Platform/OpenGL/OpenGLRendererAPI.h"
 
-#include "Events/KeyEvent.h"
+
+
 #include <thread>
 #include <chrono>
 
@@ -23,49 +24,34 @@
 
 #include "Platform/OpenGL/TextRenderer.h"
 
+#include <conio.h>
+
 bool should[10];
 #define speed 1.0f
 namespace Nova
 {
 	
-	
+	bool Application::OnClose(WindowCloseEvent& e)
+	{
+		m_Running = false;
+		return true;
+	}
+
+
 	Application* Application::s_Instance = nullptr;
-	Application::Application():
+	Application::Application() :
 	m_Camera()
 	{
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Renderer = new Renderer;
 		m_Window->SetAspectRatio(16, 9);
-		m_Window->SetVsync(true);
-		m_Shader = Shader::Create("D:/users/GABRIEL/Programming/c++/Nova/SandBoxApp/src/Shader/Basic.shader");
-	
+		//m_Window->SetVsync(true);
+		m_Window->SetEventCallback(NOVA_BIND_EVENT_FN(Application::OnEvent));
 		m_Text = new Text("D:/users/GABRIEL/Programming/c++/Nova/SandBoxApp/src/Shader/cheider.shader");
-		m_Text->AddFont("Arial","D:/users/GABRIEL/Programming/c++/Nova/SandBoxApp/src/font/alphabet.png");
-		Texture* t1= Texture::Create(TextureType::NOVA_TEXTURE_2D,"D:/users/GABRIEL/Programming/c++/Nova/SandBoxApp/src/texture/abc.png");
-		t1->Bind(0);
-		m_Shader->SetInt("texture1", 0);
-		m_Object = new Mesh(
-			{
-				{glm::vec3(-0.5f, -0.5f, 0.0f),	glm::vec4(0.8f, 0.0f, 0.0f, 1.0f), glm::vec2(0.0f,0.0f)},
-				{glm::vec3(-0.5f,  0.5f, 0.0f),	glm::vec4(0.0f, 0.8f, 0.0f, 1.0f), glm::vec2(0.0f,1.0f)},
-				{glm::vec3( 0.5f, -0.5f, 0.0f), glm::vec4(0.0f, 0.0f, 0.8f, 1.0f), glm::vec2(1.0f,0.0f)},
-				{glm::vec3( 0.5f,  0.5f, 0.0f), glm::vec4(0.0f, 0.0f, 0.8f, 1.0f), glm::vec2(1.0f,1.0f)}
-			},
-			{ 0,1,2,		
-			  1,2,3
-			},
-{
-			{ "aPos",BufferType::Float3 },
-			{ "color",BufferType::Float4 },
-			{ "textcoords",BufferType::Float2 },
-			}
-			,*m_Shader,
-			Material()
-			);
-		m_Object->Move(glm::vec3(0.0f, 0.0f, -0.5f));
-		NOVA_CORE_LOG_CRITICAL("{0}", glGetString(GL_VERSION));
 
+
+		
 		glfwSetKeyCallback((GLFWwindow*)m_Window->GetNativeWindow(), [](GLFWwindow * window, int key, int scancode, int action, int mods)
 		{
 				if (key == GLFW_KEY_D && action == GLFW_PRESS)
@@ -99,44 +85,72 @@ namespace Nova
 
 	void Application::Run()
 	{
-		float deltatime = 0.0f;
-		float previous = 0;
-		float now = 0.0f;
 
+		float PreviousTime = 0.0f;
+		float DeltaTime =0.0f;
+		float FPS = 1000 / 60.0f;
 		float time = 0;
-
+		m_Clock.SetDeltaTime(60.0f);
 		while (m_Running)
 		{
-			now = glfwGetTime();
-			deltatime = now-previous;
-			previous = now;
 
+			
+			float CurrentTime = (float)glfwGetTime();
+			DeltaTime = CurrentTime - PreviousTime;
+			PreviousTime = CurrentTime;
+			NOVA_CORE_LOG_DEBUG("Sleep Time: {0}", (int)(FPS - (1000 * DeltaTime)));
+			std::this_thread::sleep_for(std::chrono::milliseconds((int)(FPS - (1000 * DeltaTime))));
+
+			
 			RenderCommand::GetAPI()->SetColor(glm::vec4(abs(1 - sin(time)), abs(1 - sin(time + 2.095)), abs(1 - sin(time + 4.19)), 1.0f));
 			RenderCommand::GetAPI()->Clear();
 
+			for (Layer* layer : m_LayerStack)
+			{
+				layer->OnUpdate();
+			}
+
 			m_Camera.Update();
 
+			m_Window->SetTitle(std::to_string(1/DeltaTime).c_str());
 
-			m_Window->SetTitle(std::to_string(1/deltatime).c_str());
 			if (should[0])m_Camera.Displace(glm::vec3(speed, 0.0f, 0.0f));
 			if (should[1])m_Camera.Displace(glm::vec3(-speed, 0.0f, 0.0f));
 			if (should[2])m_Camera.Displace(glm::vec3(0.0f, 0.0f, speed));
 			if (should[3])m_Camera.Displace(glm::vec3(0.0f, 0.0f, -speed));
 
-			time = glfwGetTime();
-			m_Shader->SetVec4("color", sin(time), sin(time + 2.095), sin(time + 4.19),1.0f);
+
+
 
 			
-			m_Renderer->BeginScene(&m_Camera);
-			//m_Renderer->Submit(*m_Object);
-			m_Text->RenderText("ACGDF\n", "Arial", 50.0f, { 0.0f,0.0f });
-			m_Renderer->EndScene();
+
 			
 			m_Window->Update();
 
 		}
 	}
 	
+
+	void Application::OnEvent(Event& e)
+	{
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<WindowCloseEvent>(NOVA_BIND_EVENT_FN(Application::OnClose));
+		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
+		{
+			(*--it)->OnEvent(e);
+			if (e.Handled)break;
+		}
+	}
+
+	void Application::PushLayer(Layer* layer)
+	{
+		m_LayerStack.PushLayer(layer);
+	}
+
+	void Application::PushOverlay(Layer* overlay)
+	{
+		m_LayerStack.PushOverlay(overlay);
+	}
 
 	Application::~Application()
 	{

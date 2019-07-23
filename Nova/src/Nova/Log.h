@@ -50,15 +50,46 @@ namespace Nova
 
 
 #ifdef NOVA_DEBUG
- #define NOVA_CORE_LOG_TRACE(...)      Log::GetCoreLogger()->trace(__VA_ARGS__)
- #define NOVA_CORE_LOG_DEBUG(...)	   Log::GetCoreLogger()->debug(__VA_ARGS__)
- #define NOVA_CORE_LOG_INFO(...)	   Log::GetCoreLogger()->info(__VA_ARGS__)
- #define NOVA_CORE_LOG_WARN(...)	   Log::GetCoreLogger()->warn(__VA_ARGS__)
- #define NOVA_CORE_LOG_ERROR(...)	   Log::GetCoreLogger()->error(__VA_ARGS__)
- #define NOVA_CORE_LOG_CRITICAL(...)   Log::GetCoreLogger()->critical(__VA_ARGS__)
- #define NOVA_CORE_LOG_FATAL(...)	   Log::GetCoreLogger()->fatal(__VA_ARGS__)
- #define NOVA_CORE_LOG_SPECIAL(...)	   Log::GetCoreLogger()->special(__VA_ARGS__)
- #define NOVA_CORE_LOG_OFF(...)		   Log::GetCoreLogger()->off(__VA_ARGS__)
+ #define NOVA_CORE_LOG_TRACE(...)      Nova::Log::GetCoreLogger()->trace(__VA_ARGS__)
+ #define NOVA_CORE_LOG_DEBUG(...)	   Nova::Log::GetCoreLogger()->debug(__VA_ARGS__)
+ #define NOVA_CORE_LOG_INFO(...)	   Nova::Log::GetCoreLogger()->info(__VA_ARGS__)
+ #define NOVA_CORE_LOG_WARN(...)	   Nova::Log::GetCoreLogger()->warn(__VA_ARGS__)
+ #define NOVA_CORE_LOG_ERROR(...)	   Nova::Log::GetCoreLogger()->error(__VA_ARGS__)
+ #define NOVA_CORE_LOG_CRITICAL(...)   Nova::Log::GetCoreLogger()->critical(__VA_ARGS__)
+ #define NOVA_CORE_LOG_FATAL(...)	   Nova::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+ #define NOVA_CORE_LOG_SPECIAL(...)	   Nova::Log::GetCoreLogger()->special(__VA_ARGS__)
+ #define NOVA_CORE_LOG_OFF(...)		   Nova::Log::GetCoreLogger()->off(__VA_ARGS__)
+
+#define NOVA_LOG_TRACE(...)      Nova::Log::GetClientLogger()->trace(__VA_ARGS__)
+#define NOVA_LOG_DEBUG(...)	   Nova::Log::GetClientLogger()->debug(__VA_ARGS__)
+#define NOVA_LOG_INFO(...)	   Nova::Log::GetClientLogger()->info(__VA_ARGS__)
+#define NOVA_LOG_WARN(...)	   Nova::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define NOVA_LOG_ERROR(...)	   Nova::Log::GetClientLogger()->error(__VA_ARGS__)
+#define NOVA_LOG_CRITICAL(...)   Nova::Log::GetClientLogger()->critical(__VA_ARGS__)
+#define NOVA_LOG_FATAL(...)	   Nova::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define NOVA_LOG_SPECIAL(...)	   Nova::Log::GetClientLogger()->special(__VA_ARGS__)
+#define NOVA_LOG_OFF(...)		   Nova::Log::GetClientLogger()->off(__VA_ARGS__)
+
+#else
+#define NOVA_CORE_LOG_TRACE(...)  
+#define NOVA_CORE_LOG_DEBUG(...)	
+#define NOVA_CORE_LOG_INFO(...)	
+#define NOVA_CORE_LOG_WARN(...)	
+#define NOVA_CORE_LOG_ERROR(...)	
+#define NOVA_CORE_LOG_CRITICAL(...)
+#define NOVA_CORE_LOG_FATAL(...)	
+#define NOVA_CORE_LOG_SPECIAL(...)
+#define NOVA_CORE_LOG_OFF(...)		
+
+#define NOVA_LOG_TRACE(...)    
+#define NOVA_LOG_DEBUG(...)	   
+#define NOVA_LOG_INFO(...)	   
+#define NOVA_LOG_WARN(...)	   
+#define NOVA_LOG_ERROR(...)	   
+#define NOVA_LOG_CRITICAL(...) 
+#define NOVA_LOG_FATAL(...)	   
+#define NOVA_LOG_SPECIAL(...)
+#define NOVA_LOG_OFF(...)
 
 #endif
 

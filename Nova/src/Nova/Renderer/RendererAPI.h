@@ -1,7 +1,7 @@
 #pragma once
 #include "novapch.h"
 #include <glm/glm.hpp>
-#include "Renderer/Buffer.h"
+#include "Nova/Renderer/Buffer.h"
 
 namespace Nova
 {

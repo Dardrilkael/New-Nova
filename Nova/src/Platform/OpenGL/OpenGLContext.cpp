@@ -1,9 +1,9 @@
 #include "novapch.h"
 #include "OpenGLContext.h"
 #include "GLFW/glfw3.h"
-#include "Core.h"
+#include "Nova/Core.h"
 #include "glad/glad.h"
-#include "Log.h"
+#include "Nova/Log.h"
 
 namespace Nova
 {
