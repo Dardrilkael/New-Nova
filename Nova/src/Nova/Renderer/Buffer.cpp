@@ -6,23 +6,36 @@
 
 namespace Nova
 {
-	VertexBuffer * VertexBuffer::Create(float * vertices, uint32_t size, MemoryPlace place)
+	Ref<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None: return nullptr; break;
-		case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size, place); break;
+		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexArray>(); break;
 		default:
 			return nullptr;
 			break;
 		}
 	}
-	IndexBuffer * IndexBuffer::Create(uint32_t * indices, uint32_t size)
+
+
+	Ref<VertexBuffer> VertexBuffer::Create(float * vertices, uint32_t size, MemoryPlace place)
 	{
 		switch (Renderer::GetAPI())
 		{
 		case RendererAPI::API::None: return nullptr; break;
-		case RendererAPI::API::OpenGL: return new OpenGLIndexBuffer(indices, size); break;
+		case RendererAPI::API::OpenGL: return std::make_shared <OpenGLVertexBuffer>(vertices, size, place); break;
+		default:
+			return nullptr;
+			break;
+		}
+	}
+	Ref<IndexBuffer> IndexBuffer::Create(uint32_t * indices, uint32_t size)
+	{
+		switch (Renderer::GetAPI())
+		{
+		case RendererAPI::API::None: return nullptr; break;
+		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLIndexBuffer>(indices, size); break;
 		default:
 			return nullptr;
 			break;

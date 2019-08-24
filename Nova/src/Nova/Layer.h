@@ -11,11 +11,11 @@ namespace Nova
 		Layer(const std::string& name = "layer") :m_Name(name) {}
 
 
-		virtual void OnAttach() = 0;
-		virtual void OnDetach() = 0;
-		virtual void OnEvent(Event& e) = 0;
-		virtual void OnUpdate() = 0;
-
+		virtual void OnAttach() {};
+		virtual void OnDetach() {};
+		virtual void OnEvent(Event& e) {};
+		virtual void OnUpdate() {};
+		virtual void OnImGuiRender() {};
 		inline const std::string& GetName(){ return m_Name; }
 
 	protected:

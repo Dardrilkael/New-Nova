@@ -22,6 +22,9 @@
 #include "Events/MouseEvent.h"
 #include "Nova/Clock.h"
 
+
+#include "Nova/ImGui/ImGuiLayer.h"
+
 namespace Nova
 {
 	
@@ -33,30 +36,29 @@ public:
 	~Application();
 public:
 	void Run();
-	inline Window& GetWindow()const { return *m_Window; }
-	inline static Application* Get() { return s_Instance; } 
+	inline static Window& GetWindow(){ return *s_Instance->m_Window; }
+	inline static Application& Get() { return *s_Instance; } 
 	//
-	Renderer* GetRenderer() { return m_Renderer; }
-	Camera* GetCamera() { return &m_Camera; }
+
+	float GetDeltaTime() { return m_Clock.GetDeltaTime(); }
 	//
 	void OnEvent(Event& e);
 
 	void PushLayer(Layer* layer);
 	void PushOverlay(Layer* overlay);
 
-	Camera m_Camera;
+
 private:
 	bool m_Running = true;
+	ImGuiLayer* m_ImGuiLayer;
 private:
 	static Application* s_Instance;
 	std::shared_ptr<Window> m_Window;
 	LayerStack m_LayerStack;
 
-	Shader* m_Shader;
-	Mesh* m_Object;
-	Renderer* m_Renderer;
+	
 
-	Text* m_Text;
+
 private:
 	bool OnClose(WindowCloseEvent& e);
 public:

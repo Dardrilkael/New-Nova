@@ -9,6 +9,6 @@ int main()
 	auto app = Nova::CreateApplication();
 	app->Run();
 	delete app;
-	system("pause");
+	//system("pause");
 	return 0;
 }

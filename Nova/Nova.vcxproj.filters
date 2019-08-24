@@ -10,6 +10,9 @@
     <Filter Include="src\Nova\Events">
       <UniqueIdentifier>{348EDB67-A019-492C-A92A-CC201535A52C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Nova\ImGui">
+      <UniqueIdentifier>{7A4D13AE-661B-07B4-4FAF-77DA3B1CE318}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Nova\Objects">
       <UniqueIdentifier>{09CBC136-F5C3-E088-1EF6-C50D0A4EC094}</UniqueIdentifier>
     </Filter>
@@ -54,6 +57,9 @@
     <ClInclude Include="src\Nova\Application.h">
       <Filter>src\Nova</Filter>
     </ClInclude>
+    <ClInclude Include="src\Nova\Clock.h">
+      <Filter>src\Nova</Filter>
+    </ClInclude>
     <ClInclude Include="src\Nova\Core.h">
       <Filter>src\Nova</Filter>
     </ClInclude>
@@ -74,6 +80,9 @@
     </ClInclude>
     <ClInclude Include="src\Nova\Events\WindowEvent.h">
       <Filter>src\Nova\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Nova\ImGui\ImGuiLayer.h">
+      <Filter>src\Nova\ImGui</Filter>
     </ClInclude>
     <ClInclude Include="src\Nova\Input.h">
       <Filter>src\Nova</Filter>
@@ -100,6 +109,9 @@
       <Filter>src\Nova\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Nova\Renderer\GraphicsContext.h">
+      <Filter>src\Nova\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Nova\Renderer\Materials.h">
       <Filter>src\Nova\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\Nova\Renderer\RenderCommand.h">
@@ -1233,7 +1245,8 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
-    <ClInclude Include="src\Nova\Clock.h" />
+    <ClInclude Include="src\Nova\Math.h" />
+    <ClInclude Include="src\Nova\Objects\Primitives.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Nova\Application.cpp">
@@ -1241,6 +1254,12 @@
     </ClCompile>
     <ClCompile Include="src\Nova\CompileSTBI.cpp">
       <Filter>src\Nova</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nova\ImGui\ImGuiBuild.cpp">
+      <Filter>src\Nova\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nova\ImGui\ImGuiLayer.cpp">
+      <Filter>src\Nova\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\Nova\LayerStack.cpp">
       <Filter>src\Nova</Filter>
@@ -1261,6 +1280,9 @@
       <Filter>src\Nova\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Nova\Renderer\RendererAPI.cpp">
+      <Filter>src\Nova\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Nova\Renderer\Shader.cpp">
       <Filter>src\Nova\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
@@ -1290,5 +1312,6 @@
     <ClCompile Include="src\novapch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Nova\Objects\Primitives.cpp" />
   </ItemGroup>
 </Project>

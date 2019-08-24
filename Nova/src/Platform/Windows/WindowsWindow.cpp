@@ -54,11 +54,6 @@ namespace Nova
 	glfwSetWindowUserPointer(m_Window, (void*)&m_Data);
 
 
-
-}
-
-WindowsWindow::~WindowsWindow()
-{
 	glfwSetKeyCallback(m_Window, [](GLFWwindow* window, int key, int scancode, int action, int mods)
 		{
 			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
@@ -189,7 +184,14 @@ WindowsWindow::~WindowsWindow()
 
 
 
-};
+
+
+}
+
+WindowsWindow::~WindowsWindow()
+{
+	
+}
 
 
 void WindowsWindow::Update()

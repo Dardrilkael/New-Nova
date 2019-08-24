@@ -4,11 +4,11 @@
 #include "glad/glad.h"
 
 
-int GetOpengGLTextureType(TextureType type)
+int GetOpengGLTextureType(Nova::Texture::TextureType type)
 {
 	switch (type)
 	{
-	case TextureType::NOVA_TEXTURE_2D:
+	case Nova::Texture::TextureType::NOVA_TEXTURE_2D:
 		return GL_TEXTURE_2D;
 
 	default:
@@ -21,7 +21,7 @@ namespace Nova
 {
 
 
-	OpenGLTexture::OpenGLTexture(TextureType type, const std::string& path) :
+	OpenGLTexture::OpenGLTexture(Nova::Texture::TextureType type, const std::string& path) :
 		m_Width(0), m_Height(0), m_nrChannels(0),m_Type(GetOpengGLTextureType(type))
 	{
 		glGenTextures(1, &m_RendererID);
@@ -47,7 +47,7 @@ namespace Nova
 	}
 
 
-	Texture* Texture::Create(TextureType type, const std::string& path)
+	Texture* Texture::Create(Nova::Texture::TextureType type, const std::string& path)
 	{
 		return new OpenGLTexture(type, path);
 	}

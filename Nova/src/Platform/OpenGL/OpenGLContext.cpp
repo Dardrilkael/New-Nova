@@ -5,6 +5,7 @@
 #include "glad/glad.h"
 #include "Nova/Log.h"
 
+
 namespace Nova
 {
 OpenGLContext::OpenGLContext(GLFWwindow * WindowHandle):
@@ -15,7 +16,7 @@ OpenGLContext::OpenGLContext(GLFWwindow * WindowHandle):
 
 void OpenGLContext::Init()
 {
-	
+
 	glfwMakeContextCurrent(m_WindowHandle);
 	NOVA_CORE_ASSERT(gladLoadGLLoader((GLADloadproc)glfwGetProcAddress), "Could not Initialize Glad\n");
 }

@@ -5,4 +5,7 @@
 namespace Nova
 {
 	RendererAPI* RenderCommand::s_RendererAPI = new OpenGLRenderer;
+
+	
+	
 }

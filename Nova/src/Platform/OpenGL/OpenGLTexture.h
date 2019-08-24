@@ -12,7 +12,7 @@ namespace Nova
 		void Bind(int slot =0);
 
 
-		operator unsigned int() { return m_RendererID; }
+		virtual operator int() override { return m_RendererID; }
 	private:
 		uint32_t m_RendererID;
 		int32_t m_Width, m_Height, m_nrChannels;

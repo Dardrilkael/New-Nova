@@ -8,6 +8,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 include "Nova/vendor/glad"
 include "Nova/vendor/glfw"
+include "Nova/vendor/imgui"
 
 project "Nova"
 	location "Nova"
@@ -42,7 +43,7 @@ links
 	"GLFW",
 	"Glad",
 	"opengl32.lib",
-
+	"ImGui"
 
 	}
 
@@ -50,11 +51,12 @@ links
 includedirs 
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include",
+		--"%{prj.name}/vendor/spdlog/include",
 		"%{prj.name}/vendor/glad/include",
 		"%{prj.name}/vendor/glfw/include",
 		"%{prj.name}/vendor/glm",
 		"%{prj.name}/vendor/stbi",
+		"%{prj.name}/vendor/imgui"
 
 	}
 

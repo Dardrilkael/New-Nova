@@ -26,6 +26,8 @@ namespace Nova
 	
 		mesh.GetShader().Bind();
 		mesh.GetShader().SetMat4("viewProj", Renderer::s_Camera->GetViewProjection());
+		mesh.m_Material.UpdateShader();
+		mesh.GetShader().SetMat4("model", mesh.GetModel());
 		mesh.Update();
 		NOVA_CORE_ASSERT(InScene, "A Scene should be started before rendering");
 		RenderCommand::DrawIndexed(mesh.GetVertexArray());

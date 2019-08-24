@@ -1,5 +1,6 @@
 #pragma once
 #include "Nova/Log.h"
+#include "Nova/Core.h"
 
 namespace Nova
 {
@@ -29,7 +30,6 @@ namespace Nova
 		VertexBufferLayout(const std::initializer_list<BufferElement>& elements);
 		std::vector<BufferElement>::iterator begin() { return m_data.begin(); }
 		std::vector<BufferElement>::iterator end() { return m_data.end(); }
-
 		std::vector<BufferElement>::const_iterator begin() const { return m_data.begin(); }
 		std::vector<BufferElement>::const_iterator end()  const { return m_data.end(); }
 		
@@ -42,10 +42,10 @@ namespace Nova
 	class VertexBuffer
 	{
 	public:
+		static Ref<VertexBuffer> Create(float* vertices, uint32_t size, MemoryPlace place = MemoryPlace::Static);
 		virtual ~VertexBuffer(){}
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
-		static VertexBuffer* Create(float* vertices, uint32_t size, MemoryPlace place = MemoryPlace::Static);
 		virtual void addLayout(const VertexBufferLayout& layout) = 0;
 	};
 
@@ -53,11 +53,11 @@ namespace Nova
 	class IndexBuffer
 	{
 	public:
+		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t size);
 		virtual ~IndexBuffer() {}
 		virtual void Bind() const = 0;
 		virtual void UnBind() const = 0;
 		inline virtual uint32_t GetCount() const = 0;
-		static IndexBuffer* Create(uint32_t* indices, uint32_t size);
 
 
 	};
@@ -66,7 +66,7 @@ namespace Nova
 	class VertexArray
 	{
 	public:
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 		virtual void Bind() = 0;
 		virtual void UnBind() = 0;
 		virtual void AddBuffer(const std::shared_ptr<VertexBuffer>& vb, const std::shared_ptr<IndexBuffer>& ib) = 0;

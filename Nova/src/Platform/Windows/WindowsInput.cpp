@@ -7,18 +7,18 @@ namespace Nova
 Input* Input::s_Instance = new WindowsInput;
 bool WindowsInput::Impl_IsKeyPressed(int key)
 {
-	return  glfwGetKey((GLFWwindow*)Application::Get()->GetWindow().GetNativeWindow(), key);
+	return  glfwGetKey((GLFWwindow*)Application::Get().GetWindow().GetNativeWindow(), key);
 }
 
 bool WindowsInput::Impl_IsMouseButtonPressed(int button)
 {
-	return  glfwGetMouseButton((GLFWwindow*)Application::Get()->GetWindow().GetNativeWindow(),button);
+	return  glfwGetMouseButton((GLFWwindow*)Application::Get().GetWindow().GetNativeWindow(),button);
 }
 
 std::pair<float, float> WindowsInput::Impl_GetMousePos()
 {
 	double xpos, ypos;
-	glfwGetCursorPos((GLFWwindow*)Application::Get()->GetWindow().GetNativeWindow(), &xpos, &ypos);
+	glfwGetCursorPos((GLFWwindow*)Application::Get().GetWindow().GetNativeWindow(), &xpos, &ypos);
 	return {xpos,ypos};
 }
 

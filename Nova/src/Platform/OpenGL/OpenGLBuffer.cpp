@@ -1,7 +1,7 @@
 #include "novapch.h"
 #include "OpenGLBuffer.h"
 #include "glad/glad.h"
-
+#include "Nova/Core.h"
 
 
 namespace Nova
@@ -32,6 +32,8 @@ namespace Nova
 
 
 //--------------------\Vertex Buffer/--------------------//
+
+
 OpenGLVertexBuffer::OpenGLVertexBuffer(float * vertices, uint32_t size, MemoryPlace place)
 {
 	glGenBuffers(1, &m_RendererID);
@@ -56,22 +58,18 @@ void OpenGLVertexBuffer::UnBind()const
 
 void OpenGLVertexBuffer::addLayout(const VertexBufferLayout& layout)
 {
-	NOVA_CORE_LOG_TRACE("Working  {0}", layout.begin()->name);
+
 	int count = 0;
 	int stride = 0;
 	int offset = 0;
 
 	for (auto& item : layout) {
 		stride += GetSizeOfData(item.type);
-		NOVA_CORE_LOG_TRACE("Tipo size :{0}", GetSizeOfData(item.type));
-		NOVA_CORE_LOG_TRACE("Stride :{0}", stride);
+
 	}
 	for (auto& item : layout)
 	{
-		NOVA_CORE_LOG_TRACE("Count: {0}", count);
-		NOVA_CORE_LOG_TRACE("Quantity: {0}", GetCountOfData(item.type));
-		NOVA_CORE_LOG_TRACE("Stride: {0}", stride);
-		NOVA_CORE_LOG_TRACE("Ofsset: : {0}", offset);
+
 		glVertexAttribPointer(count, GetCountOfData(item.type), GetGLType(item.type), item.normalized, stride, (void*)offset);
 		glEnableVertexAttribArray(count);
 
@@ -89,6 +87,7 @@ void OpenGLVertexBuffer::addLayout(const VertexBufferLayout& layout)
 
 
 //--------------------\Index Buffer/--------------------//
+
 OpenGLIndexBuffer::OpenGLIndexBuffer(uint32_t * indices, uint32_t size):
 	m_Count(0)
 {
@@ -125,6 +124,14 @@ void OpenGLIndexBuffer::UnBind()const
 
 
 //--------------------\Vertex Array/--------------------//
+
+
+OpenGLVertexArray::OpenGLVertexArray()
+{
+	glGenVertexArrays(1, &m_RendererID);
+	glBindVertexArray(m_RendererID);
+}
+
 void OpenGLVertexArray::Bind()
 {
 	glBindVertexArray(m_RendererID);
@@ -145,15 +152,9 @@ void OpenGLVertexArray::AddBuffer(const std::shared_ptr<VertexBuffer>& vb, const
 	ib->Bind();
 }
 
-OpenGLVertexArray::OpenGLVertexArray()
-{
 
-	glGenVertexArrays(1, &m_RendererID);
-	glBindVertexArray(m_RendererID);
 
-}
 
-VertexArray* VertexArray::Create() { return new OpenGLVertexArray(); }
 
 //--------------------/Vertex Array\--------------------//
 

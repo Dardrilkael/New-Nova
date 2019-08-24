@@ -1,8 +1,8 @@
 #pragma once 
 #include "Nova/Renderer/Buffer.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include "Nova/Renderer/Shader.h"
+#include "Nova/Math.h"
+#include "Nova/Renderer/Materials.h"
+#include "Nova/Core.h"
 
 namespace Nova
 {
@@ -13,48 +13,42 @@ namespace Nova
 		BufferType type;
 
 	};
-	struct Material
-	{
-		//std::vector
 
-	};
-
-class Mesh
-{
-public:
 	struct Vertex
 	{
-		glm::vec3 vertex;
-		glm::vec4 color;
-		glm::vec2 texCoords;
+		Vec3 vertex;
+		Vec4 color;
+		Vec2 texCoords;
 
 	};
 
 
 
-	Mesh(const std::initializer_list<Mesh::Vertex>& vertices, const std::initializer_list<uint32_t>& indices, const VertexBufferLayout& layout, Shader& shader, Material& material);
-	void Update();
-	const std::shared_ptr<VertexArray>& GetVertexArray()const { return m_VertexArray; }
-	void Move(const glm::vec3& displacement)
+	class Mesh
 	{
-		m_Model = glm::translate(m_Model, displacement);
-	}
+	public:
+		Mesh(const std::initializer_list<Vertex>& vertices, const std::initializer_list<uint32_t>& indices, const VertexBufferLayout& layout, Material& material);
+		void Update();
+		void Displace(const glm::vec3& displacement)
+		{
+			m_Model = glm::translate(m_Model, displacement);
+		}
 
-	const Shader& GetShader()const { return m_Shader; }
-private:
-	std::shared_ptr<VertexArray> m_VertexArray;
-	std::shared_ptr<VertexBuffer> m_VertexBuffer;
-	std::shared_ptr<IndexBuffer> m_IndexBuffer;
-	std::vector<Vertex> m_Vertices;
-	std::vector<uint32_t> m_Indices;
+		const std::shared_ptr<VertexArray>& GetVertexArray()const { return m_VertexArray; }
+		const Shader& GetShader()const { return *m_Material.m_Shader; }
+		inline float* GetModel() { return &m_Model[0][0]; }
 
-	glm::mat4 m_Model;
-
-	Material& m_Material;
-	Shader& m_Shader;
-
+		Material& m_Material;
+	private:
+		Ref<VertexArray> m_VertexArray;
+		Ref<VertexBuffer> m_VertexBuffer;
+		Ref<IndexBuffer> m_IndexBuffer;
+		std::vector<Vertex> m_Vertices;
+		std::vector<uint32_t> m_Indices;
 
 
-};
+		glm::mat4 m_Model;
+
+	};
 
 }

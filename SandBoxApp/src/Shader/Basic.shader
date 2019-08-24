@@ -1,27 +1,36 @@
 #Vertex
-//#version 430 core
+#version 330 core
 layout (location = 0) in vec4 aPos;
-layout (location = 1) in vec3 aColor;
+layout (location = 2) in vec2 aTexCoords;
 
-
+uniform vec2 kk;
 uniform mat4 viewProj;
 uniform mat4 model;
 out vec4 vcolor;
-
+out vec2 vTexCoords;
 void main()
 {
    gl_Position = viewProj*model*aPos;
-   vcolor = vec4(aColor,1.0f);
-
+   vTexCoords = aTexCoords;
 };
 
 
 #Fragment
-//#version 430 core
-uniform vec4 color;
+#version 330 core
+
+struct Material
+{
+	vec3 ambient;
+	sampler2D especular;
+	sampler2D diffuse;
+};
+in vec2 vTexCoords;
+
+uniform Material material;
 out vec4 FragColor;
-in vec4 vcolor;
+
+//in vec4 vcolor;
 void main()
 {
-	FragColor = color + vcolor;
+	FragColor = texture(material.diffuse, vTexCoords);// + vcolor;
 };

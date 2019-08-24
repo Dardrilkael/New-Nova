@@ -13,34 +13,36 @@ using namespace std::literals::chrono_literals;
 namespace Nova
 
 {
+	Text* Text::s_Instance = nullptr;// new Text("D:/users/GABRIEL/Programming/c++/Nova/SandBoxApp/src/Shader/cheider.shader");
 
-	
+
 
 	Text::Text(const char* shaderpath)
 	{
+		s_Instance = this;
 		m_Shader = Shader::Create(shaderpath);
 		m_Shader->Bind();
-		m_VAO.reset(VertexArray::Create());
+		m_VAO = VertexArray::Create();
 		uint32_t indices[] = { 0,1,2,1,2,3 };
-		m_IBO.reset(IndexBuffer::Create(indices, sizeof(indices)));
+		m_IBO = IndexBuffer::Create(indices, sizeof(indices));
 		m_Layout = new VertexBufferLayout(
 			{
 			{ "aPos"      , BufferType::Float2 },
 			{ "aTexCoords", BufferType::Float2 },
 			}
 		);
-		m_Proj = glm::ortho(0.0f, (float)Application::Get()->GetWindow().GetWidth(),
-		(float)Application::Get()->GetWindow().GetHeight(),0.0f);
+		m_Proj = glm::ortho(0.0f, (float)Application::Get().GetWindow().GetWidth(),
+		(float)Application::Get().GetWindow().GetHeight(),0.0f);
 		m_Shader->SetMat4("proj", &m_Proj[0][0]);
 		m_VBO = nullptr;
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
-	void Text::AddFont(std::string name, const char* path)
+	void Text::AddFont_impl(std::string name, const char* path)
 	{
-		m_Fonts.push_back({ name, Texture::Create(TextureType::NOVA_TEXTURE_2D, path) });
+		m_Fonts.push_back({ name, Texture::Create(Texture::TextureType::NOVA_TEXTURE_2D, path) });
 	}
-	void Text::RenderText(const std::string& text, const std::string& font, uint32_t size, glm::vec2 pos)
+	void Text::RenderText_impl(const std::string& text, const std::string& font, uint32_t size, glm::vec2 pos)
 	{
 		Texture* selectedTexture = nullptr;
 		for (auto& i : m_Fonts)
@@ -60,7 +62,6 @@ namespace Nova
 		char b = c;
 		float w = size;
 		float h = size;
-		Log::SetCoreLevel(Log::level_log::info);
 		float xpos = pos.x;
 		float ypos = pos.y;
 		float vertices[24];
@@ -71,8 +72,6 @@ namespace Nova
 		{
 		start:
 			int f = 1, g = 0;
-			//NOVA_CORE_LOG_SPECIAL("    : {0}  {1}", (int)c - 64,c);
-			//std::this_thread::sleep_for(1s);
 
 			c = text[i];
 
@@ -96,10 +95,7 @@ namespace Nova
 			}
 		
 
-			
-			
-			//std::this_thread::sleep_for(std::chrono::milliseconds(10));
-			//NOVA_CORE_LOG_WARN("    : {0}  {1}", (int)c - 64, c);
+		
 			if (c > (7 + 64))
 			{
 				g = ((int)c - 64) / 7;
@@ -126,7 +122,7 @@ namespace Nova
 			};
 			
 			m_VAO->Bind();
-			m_VBO.reset(VertexBuffer::Create(vertices, sizeof(vertices), MemoryPlace::Dynamic));
+			m_VBO = VertexBuffer::Create(vertices, sizeof(vertices), MemoryPlace::Dynamic);
 			m_VBO->Bind();
 			m_VBO->addLayout(*m_Layout);
 			m_IBO->Bind();
@@ -138,5 +134,4 @@ namespace Nova
 		}
 		
 	}
-
-}
+	}

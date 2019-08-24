@@ -31,7 +31,7 @@ namespace Nova
 	public:
 		WindowMovedEvent(int xpos, int ypos)
 			: m_Xpos(xpos), m_Ypos(ypos){}
-		EVENT_CLASS_TYPE(WindowClose, );
+		EVENT_CLASS_TYPE(WindowMoved, );
 		EVENT_CLASS_CATEGORY(EventCategoryApplication);
 	private:
 		int m_Xpos, m_Ypos;
